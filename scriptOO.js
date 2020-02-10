@@ -15,19 +15,19 @@ function dates (from, to){
 dates.prototype.getDates = function (){
     
     let fromDate = new Date(this.from);
-    const toDate = new Date(this.to);
-    if (fromDate || toDate > Date() ){
-        alert('Dates can\'t be in future');
-        return ;
-    } else {
+    let toDate = new Date(this.to);
+    if (fromDate > Date() ){
+        fromDate = new Date();
+     }
+     if (toDate > Date() ){
+        toDate = new Date();
+     }
         while (fromDate <= toDate){
             if(fromDate.getDay() > 0 && fromDate.getDay() < 6 ){
                 this.dateArray.push(new Date(fromDate));
             }
-        fromDate.setDate(fromDate.getDate() + 1);
-        
-        }
-    }
+        fromDate.setDate(fromDate.getDate() + 1);  
+        };
     return this;
 }
 dates.prototype.datesToString = function(){
